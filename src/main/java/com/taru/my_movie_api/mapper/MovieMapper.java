@@ -1,46 +1,10 @@
-package com.taru.my_movie_api.service;
+package com.taru.my_movie_api.mapper;
 
 import com.taru.my_movie_api.dto.MovieDTO;
-import com.taru.my_movie_api.dto.MovieResponse;
 import com.taru.my_movie_api.models.Movie;
-import com.taru.my_movie_api.repository.MovieRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Service
-public class MovieServiceImpl implements MovieService{
-    private MovieRepository movieRepository;
-
-    @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
-
-    @Override
-    public MovieResponse getAllMovies(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Movie> movies = movieRepository.findAll(pageable);
-        List<Movie> listOfMovies = movies.getContent();
-        List<MovieDTO> content = listOfMovies.stream().map(this::mapToDto).collect(Collectors.toList());
-
-        MovieResponse movieResponse = new MovieResponse();
-        movieResponse.setContent(content);
-        movieResponse.setPageNo(movies.getNumber());
-        movieResponse.setPageSize(movies.getSize());
-        movieResponse.setTotalElements(movies.getTotalElements());
-        movieResponse.setTotalPages(movies.getTotalPages());
-        movieResponse.setLast(movies.isLast());
-
-        return movieResponse;
-    }
-
-    private MovieDTO mapToDto(Movie pokemon) {
+public class MovieMapper {
+    public static MovieDTO mapToDto(Movie pokemon) {
 
         return MovieDTO.builder()
                 .id(pokemon.getId())
@@ -63,7 +27,7 @@ public class MovieServiceImpl implements MovieService{
                 .build();
     }
 
-    private Movie mapToEntity(MovieDTO movieDTO) {
+    public static Movie mapToEntity(MovieDTO movieDTO) {
 
         return Movie.builder()
                 .id(movieDTO.getId())
