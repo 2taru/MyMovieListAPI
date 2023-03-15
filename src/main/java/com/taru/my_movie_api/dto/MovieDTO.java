@@ -1,6 +1,5 @@
-package com.taru.my_movie_api.models;
+package com.taru.my_movie_api.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "movies")
-public class Movie {
-    @Id
-    @GeneratedValue
+public class MovieDTO {
     private int id;
     private String seriesTitle;
     private double imdbRating;
