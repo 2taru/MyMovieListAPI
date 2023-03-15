@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService{
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
 
     @Autowired
     public MovieServiceImpl(MovieRepository movieRepository) {

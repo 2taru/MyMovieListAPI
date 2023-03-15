@@ -23,13 +23,9 @@ public class Movie {
     private String overview;
     private String certificate;
     private String director;
-    @Column(name = "star_1")
     private String star1;
-    @Column(name = "star_2")
     private String star2;
-    @Column(name = "star_3")
     private String star3;
-    @Column(name = "star_4")
     private String star4;
     private int metaScore;
     private int noOfVotes;
