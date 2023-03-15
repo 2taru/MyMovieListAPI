@@ -41,4 +41,11 @@ public class MovieServiceImpl implements MovieService {
 
         return movieResponse;
     }
+
+    @Override
+    public MovieDTO getMovieById(int movieId) {
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new RuntimeException("Movie with id = " + movieId + " - not found!"));
+        return MovieMapper.mapToDto(movie);
+    }
 }
