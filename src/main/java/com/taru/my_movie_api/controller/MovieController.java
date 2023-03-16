@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class MovieController {
     private final MovieService movieService;
 
@@ -22,16 +22,18 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("movie")
+    @GetMapping("/movie")
     public ResponseEntity<MovieResponse> getMovies(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "imdbRating", required = false) String sortBy,
+            @RequestParam(value = "sortType", defaultValue = "DESC", required = false) String sortType
     ) {
 
-        return new ResponseEntity<>(movieService.getAllMovies(pageNo, pageSize), HttpStatus.OK);
+        return new ResponseEntity<>(movieService.getAllMovies(pageNo, pageSize, sortBy, sortType), HttpStatus.OK);
     }
 
-    @GetMapping("movie/{id}")
+    @GetMapping("/movie/{id}")
     public ResponseEntity<MovieDTO> pokemonDetail(@PathVariable int id) {
 
         return ResponseEntity.ok(movieService.getMovieById(id));
