@@ -4,26 +4,27 @@ import com.taru.my_movie_api.dto.MovieDTO;
 import com.taru.my_movie_api.models.Movie;
 
 public class MovieMapper {
-    public static MovieDTO mapToDto(Movie pokemon) {
+
+    public static MovieDTO mapToDto(Movie movie) {
 
         return MovieDTO.builder()
-                .id(pokemon.getId())
-                .genre(pokemon.getGenre())
-                .certificate(pokemon.getCertificate())
-                .gross(pokemon.getGross())
-                .overview(pokemon.getOverview())
-                .posterLink(pokemon.getPosterLink())
-                .runtime(pokemon.getRuntime())
-                .releasedYear(pokemon.getReleasedYear())
-                .star1(pokemon.getStar1())
-                .star2(pokemon.getStar2())
-                .star3(pokemon.getStar3())
-                .star4(pokemon.getStar4())
-                .seriesTitle(pokemon.getSeriesTitle())
-                .imdbRating(pokemon.getImdbRating())
-                .genre(pokemon.getGenre())
-                .posterLink(pokemon.getPosterLink())
-                .director(pokemon.getDirector())
+                .id(movie.getId())
+                .genre(movie.getGenre())
+                .certificate(movie.getCertificate())
+                .gross(movie.getGross())
+                .overview(movie.getOverview())
+                .posterLink(movie.getPosterLink())
+                .runtime(movie.getRuntime())
+                .releasedYear(movie.getReleasedYear())
+                .star1(movie.getStar1())
+                .star2(movie.getStar2())
+                .star3(movie.getStar3())
+                .star4(movie.getStar4())
+                .seriesTitle(movie.getSeriesTitle())
+                .imdbRating(movie.getImdbRating())
+                .genre(movie.getGenre())
+                .posterLink(movie.getPosterLink())
+                .director(movie.getDirector())
                 .build();
     }
 
