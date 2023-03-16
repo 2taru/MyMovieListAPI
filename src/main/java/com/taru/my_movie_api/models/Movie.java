@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "movies")
 public class Movie {
+
     @Id
     @GeneratedValue
     private int id;

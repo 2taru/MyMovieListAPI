@@ -4,6 +4,7 @@ import com.taru.my_movie_api.dto.UserDTO;
 import com.taru.my_movie_api.models.User;
 
 public class UserMapper {
+
     public static UserDTO mapToDto(User user) {
 
         return UserDTO.builder()

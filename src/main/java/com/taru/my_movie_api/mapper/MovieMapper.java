@@ -4,6 +4,7 @@ import com.taru.my_movie_api.dto.MovieDTO;
 import com.taru.my_movie_api.models.Movie;
 
 public class MovieMapper {
+
     public static MovieDTO mapToDto(Movie movie) {
 
         return MovieDTO.builder()

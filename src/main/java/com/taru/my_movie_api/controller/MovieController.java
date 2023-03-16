@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/api")
 public class MovieController {
+
     private final MovieService movieService;
 
     @Autowired
     public MovieController(MovieService movieService) {
+
         this.movieService = movieService;
     }
 

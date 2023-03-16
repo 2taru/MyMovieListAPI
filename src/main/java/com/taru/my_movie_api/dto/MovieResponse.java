@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class MovieResponse {
+
     private List<MovieDTO> content;
     private int pageNo;
     private int pageSize;

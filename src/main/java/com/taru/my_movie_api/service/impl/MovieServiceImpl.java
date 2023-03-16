@@ -9,7 +9,6 @@ import com.taru.my_movie_api.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +17,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
+
     private final MovieRepository movieRepository;
 
     @Autowired
     public MovieServiceImpl(MovieRepository movieRepository) {
+
         this.movieRepository = movieRepository;
     }
 
@@ -45,8 +46,10 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public MovieDTO getMovieById(int movieId) {
+
         Movie movie = movieRepository.findById(movieId)
                 .orElseThrow(() -> new RuntimeException("Movie with id = " + movieId + " - not found!"));
+        
         return MovieMapper.mapToDto(movie);
     }
 }
