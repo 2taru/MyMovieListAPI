@@ -5,12 +5,7 @@ import com.taru.my_movie_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -39,7 +34,15 @@ public class UserController {
     @PutMapping("/user/{id}/update")
     public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") int userId) {
 
-        UserDTO response = userService.updateUser(userId, userDTO);
+        UserDTO response = userService.updateUserById(userId, userDTO);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable("id") int userId) {
+
+        UserDTO response = userService.getUserById(userId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

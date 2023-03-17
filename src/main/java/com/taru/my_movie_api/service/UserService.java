@@ -1,7 +1,6 @@
 package com.taru.my_movie_api.service;
 
 import com.taru.my_movie_api.dto.UserDTO;
-import com.taru.my_movie_api.models.User;
 
 public interface UserService {
 
@@ -9,11 +8,9 @@ public interface UserService {
 
     UserDTO createUser(UserDTO user);
 
-    UserDTO updateUser(int userId, UserDTO user);
+    UserDTO updateUserById(int userId, UserDTO user);
 
-    UserDTO getByUsername(String username);
+    UserDTO getUserById(int userId);
 
-    UserDTO findByEmail(String email);
-
-    void deleteUserByUsername(String username);
+    void deleteUserById(int userId);
 }
