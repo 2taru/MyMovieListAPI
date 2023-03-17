@@ -1,6 +1,7 @@
 package com.taru.my_movie_api.service.impl;
 
 import com.taru.my_movie_api.dto.UserDTO;
+import com.taru.my_movie_api.exception.UserNotFoundException;
 import com.taru.my_movie_api.mapper.UserMapper;
 import com.taru.my_movie_api.models.User;
 import com.taru.my_movie_api.repository.UserRepository;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO updateUserById(int userId, UserDTO userDTO) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
+                .orElseThrow(() -> new UserNotFoundException("User with id = " + userId + " - not found!"));
 
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUserById(int userId) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
+                .orElseThrow(() -> new UserNotFoundException("User with id = " + userId + " - not found!"));
 
         return UserMapper.mapToDto(user);
     }

@@ -12,7 +12,19 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MovieNotFoundException.class)
-    public ResponseEntity<ErrorObject> handleMovieNotFoundException(MovieNotFoundException ex, WebRequest request){
+    public ResponseEntity<ErrorObject> handleMovieNotFoundException(MovieNotFoundException ex, WebRequest request) {
+
+        ErrorObject errorObject = new ErrorObject();
+
+        errorObject.setStatusCode(HttpStatus.NOT_FOUND.value());
+        errorObject.setMessage(ex.getMessage());
+        errorObject.setTimestamp(new Date());
+
+        return new ResponseEntity<>(errorObject, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorObject> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
 
         ErrorObject errorObject = new ErrorObject();
 

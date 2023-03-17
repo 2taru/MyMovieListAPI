@@ -2,6 +2,7 @@ package com.taru.my_movie_api.service.impl;
 
 import com.taru.my_movie_api.dto.MovieListItemDTO;
 import com.taru.my_movie_api.exception.MovieNotFoundException;
+import com.taru.my_movie_api.exception.UserNotFoundException;
 import com.taru.my_movie_api.mapper.MovieListItemMapper;
 import com.taru.my_movie_api.mapper.MovieMapper;
 import com.taru.my_movie_api.mapper.UserMapper;
@@ -38,7 +39,7 @@ public class MovieListItemServiceImpl implements MovieListItemService {
     public MovieListItemDTO createMovieListItem(MovieListItemDTO movieListItemDTO, int userId, int movieId) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
+                .orElseThrow(() -> new UserNotFoundException("User with id = " + userId + " - not found!"));
 
         Movie movie = movieRepository.findById(movieId)
                 .orElseThrow(() -> new MovieNotFoundException("Movie with id = " + movieId + " - not found!"));
