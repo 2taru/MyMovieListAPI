@@ -25,7 +25,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie")
-    public ResponseEntity<MovieResponse> getMovies(
+    public ResponseEntity<MovieResponse> getAllMovies(
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
             @RequestParam(value = "sortBy", defaultValue = "imdbRating", required = false) String sortBy,
@@ -36,7 +36,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie/{id}")
-    public ResponseEntity<MovieDTO> pokemonDetail(@PathVariable int id) {
+    public ResponseEntity<MovieDTO> getMovieById(@PathVariable int id) {
 
         return ResponseEntity.ok(movieService.getMovieById(id));
     }

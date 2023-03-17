@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     private final UserRepository userRepository;
 
     @Autowired
@@ -35,9 +35,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(int userId, UserDTO userDTO) {
+    public UserDTO updateUserById(int userId, UserDTO userDTO) {
 
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User could not be updated!"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
 
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
@@ -48,17 +49,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getByUsername(String username) {
-        return null;
+    public UserDTO getUserById(int userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
+
+        return UserMapper.mapToDto(user);
     }
 
     @Override
-    public UserDTO findByEmail(String email) {
-        return null;
-    }
+    public void deleteUserById(int userId) {
 
-    @Override
-    public void deleteUserByUsername(String username) {
-
+        userRepository.deleteById(userId);
     }
 }
