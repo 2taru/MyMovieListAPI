@@ -28,7 +28,7 @@ public class UserController {
 
         userService.createUser(userDTO);
 
-        return new ResponseEntity<>("User registered success!", HttpStatus.OK);
+        return new ResponseEntity<>("User registered!", HttpStatus.CREATED);
     }
 
     @PutMapping("/user/{id}/update")

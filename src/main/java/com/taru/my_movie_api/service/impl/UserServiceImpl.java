@@ -12,11 +12,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
 
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -28,10 +30,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO createUser(UserDTO userDTO) {
 
-        User user = UserMapper.mapToEntity(userDTO);
+        User user = userMapper.mapToEntity(userDTO);
         userRepository.save(user);
 
-        return UserMapper.mapToDto(user);
+        return userMapper.mapToDto(user);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userDTO.getPassword());
         User updatedUser = userRepository.save(user);
 
-        return UserMapper.mapToDto(updatedUser);
+        return userMapper.mapToDto(updatedUser);
     }
 
     @Override
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User with id = " + userId + " - not found!"));
 
-        return UserMapper.mapToDto(user);
+        return userMapper.mapToDto(user);
     }
 
     @Override

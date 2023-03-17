@@ -2,10 +2,12 @@ package com.taru.my_movie_api.mapper;
 
 import com.taru.my_movie_api.dto.MovieDTO;
 import com.taru.my_movie_api.models.Movie;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MovieMapper {
 
-    public static MovieDTO mapToDto(Movie movie) {
+    public MovieDTO mapToDto(Movie movie) {
 
         return MovieDTO.builder()
                 .id(movie.getId())
@@ -28,7 +30,7 @@ public class MovieMapper {
                 .build();
     }
 
-    public static Movie mapToEntity(MovieDTO movieDTO) {
+    public Movie mapToEntity(MovieDTO movieDTO) {
 
         return Movie.builder()
                 .id(movieDTO.getId())
