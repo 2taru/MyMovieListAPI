@@ -19,27 +19,19 @@ import org.springframework.stereotype.Service;
 public class MovieListItemServiceImpl implements MovieListItemService {
 
     private final MovieListItemRepository movieListItemRepository;
-    private final MovieListItemMapper movieListItemMapper;
     private final MovieRepository movieRepository;
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
-    private final MovieMapper movieMapper;
 
+    @Autowired
     public MovieListItemServiceImpl(
             MovieListItemRepository movieListItemRepository,
-            MovieListItemMapper movieListItemMapper,
             MovieRepository movieRepository,
-            UserRepository userRepository,
-            UserMapper userMapper,
-            MovieMapper movieMapper
+            UserRepository userRepository
     ) {
 
         this.movieListItemRepository = movieListItemRepository;
-        this.movieListItemMapper = movieListItemMapper;
         this.movieRepository = movieRepository;
         this.userRepository = userRepository;
-        this.userMapper = userMapper;
-        this.movieMapper = movieMapper;
     }
 
     @Override
@@ -51,13 +43,13 @@ public class MovieListItemServiceImpl implements MovieListItemService {
         Movie movie = movieRepository.findById(movieId)
                 .orElseThrow(() -> new MovieNotFoundException("Movie with id = " + movieId + " - not found!"));
 
-        movieListItemDTO.setUserDTO(userMapper.mapToDto(user));
-        movieListItemDTO.setMovieDTO(movieMapper.mapToDto(movie));
+        movieListItemDTO.setUserDTO(UserMapper.mapToDto(user));
+        movieListItemDTO.setMovieDTO(MovieMapper.mapToDto(movie));
 
-        MovieListItem movieListItem = movieListItemMapper.mapToEntity(movieListItemDTO);
+        MovieListItem movieListItem = MovieListItemMapper.mapToEntity(movieListItemDTO);
 
         MovieListItem savedMovieListItem = movieListItemRepository.save(movieListItem);
 
-        return movieListItemMapper.mapToDto(savedMovieListItem);
+        return MovieListItemMapper.mapToDto(savedMovieListItem);
     }
 }

@@ -20,13 +20,11 @@ import java.util.stream.Collectors;
 public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
-    private final MovieMapper movieMapper;
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository, MovieMapper movieMapper) {
+    public MovieServiceImpl(MovieRepository movieRepository) {
 
         this.movieRepository = movieRepository;
-        this.movieMapper = movieMapper;
     }
 
     @Override
@@ -34,7 +32,7 @@ public class MovieServiceImpl implements MovieService {
 
         Page<Movie> movies = movieRepository.findAll(PageRequest.of(pageNo, pageSize, Sort.by(sortType.equals("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy)));
         List<Movie> listOfMovies = movies.getContent();
-        List<MovieDTO> content = listOfMovies.stream().map(movieMapper::mapToDto).collect(Collectors.toList());
+        List<MovieDTO> content = listOfMovies.stream().map(MovieMapper::mapToDto).collect(Collectors.toList());
 
         MovieResponse movieResponse = new MovieResponse();
         movieResponse.setContent(content);
@@ -53,6 +51,6 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = movieRepository.findById(movieId)
                 .orElseThrow(() -> new MovieNotFoundException("Movie with id = " + movieId + " - not found!"));
         
-        return movieMapper.mapToDto(movie);
+        return MovieMapper.mapToDto(movie);
     }
 }
