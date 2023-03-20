@@ -1,6 +1,7 @@
 package com.taru.my_movie_api.controller;
 
 import com.taru.my_movie_api.dto.MovieListItemDTO;
+import com.taru.my_movie_api.dto.MovieListItemResponse;
 import com.taru.my_movie_api.service.MovieListItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ public class MovieListItemController {
 
     @Autowired
     public MovieListItemController(MovieListItemService movieListItemService) {
+
         this.movieListItemService = movieListItemService;
     }
 
@@ -28,5 +30,18 @@ public class MovieListItemController {
         movieListItemService.createMovieListItem(movieListItemDTO, userId, movieId);
 
         return new ResponseEntity<>("Created", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/movieListItem")
+    public ResponseEntity<MovieListItemResponse> getMovieListItems(
+            @RequestParam(value = "userId") int userId,
+            @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+    ) {
+
+        MovieListItemResponse movieListItemResponse =
+                movieListItemService.getAllMovieListItemsByUserId(userId, pageNo, pageSize);
+
+        return new ResponseEntity<>(movieListItemResponse, HttpStatus.OK);
     }
 }
