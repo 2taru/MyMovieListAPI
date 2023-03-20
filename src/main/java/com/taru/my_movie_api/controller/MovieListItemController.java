@@ -44,4 +44,10 @@ public class MovieListItemController {
 
         return new ResponseEntity<>(movieListItemResponse, HttpStatus.OK);
     }
+
+    @GetMapping("/movieListItem/{id}")
+    public ResponseEntity<MovieListItemDTO> getMovieListItemById(@PathVariable("id") int id) {
+
+        return new ResponseEntity<>(movieListItemService.getMovieListItemById(id), HttpStatus.OK);
+    }
 }

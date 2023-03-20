@@ -80,4 +80,13 @@ public class MovieListItemServiceImpl implements MovieListItemService {
 
         return movieListItemResponse;
     }
+
+    @Override
+    public MovieListItemDTO getMovieListItemById(int movieListItemId) {
+
+        MovieListItem movieListItem = movieListItemRepository.findById(movieListItemId)
+                .orElseThrow(() -> new RuntimeException("MovieListItem with id = " + movieListItemId + " - not found!"));
+
+        return MovieListItemMapper.mapToDto(movieListItem);
+    }
 }

@@ -8,4 +8,6 @@ public interface MovieListItemService {
     MovieListItemDTO createMovieListItem(MovieListItemDTO movieListItemDTO, int userId, int movieId);
 
     MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize);
+
+    MovieListItemDTO getMovieListItemById(int movieListItemId);
 }
