@@ -90,4 +90,21 @@ public class MovieListItemServiceImpl implements MovieListItemService {
 
         return MovieListItemMapper.mapToDto(movieListItem);
     }
+
+    @Override
+    public MovieListItemDTO updateMovieListItemById(int movieListItemId, MovieListItemDTO movieListItemDTO) {
+
+        MovieListItem movieListItem = movieListItemRepository.findById(movieListItemId)
+                .orElseThrow(() -> new MovieListItemNotFoundException("MovieListItem with id = " + movieListItemId + " - not found!"));
+
+        movieListItem.setDescription(movieListItemDTO.getDescription());
+        movieListItem.setScore(movieListItemDTO.getScore());
+        movieListItem.setStatus(movieListItemDTO.getStatus());
+        movieListItem.setUser(UserMapper.mapToEntity(movieListItemDTO.getUserDTO()));
+        movieListItem.setMovie(MovieMapper.mapToEntity(movieListItemDTO.getMovieDTO()));
+
+        MovieListItem updatedMovieListItem = movieListItemRepository.save(movieListItem);
+
+        return MovieListItemMapper.mapToDto(updatedMovieListItem);
+    }
 }

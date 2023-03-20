@@ -10,4 +10,6 @@ public interface MovieListItemService {
     MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize);
 
     MovieListItemDTO getMovieListItemById(int movieListItemId);
+
+    MovieListItemDTO updateMovieListItemById(int movieListItemId, MovieListItemDTO movieListItemDTO);
 }

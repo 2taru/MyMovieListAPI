@@ -50,4 +50,13 @@ public class MovieListItemController {
 
         return new ResponseEntity<>(movieListItemService.getMovieListItemById(id), HttpStatus.OK);
     }
+
+    @PutMapping("/movieListItem/{id}")
+    public ResponseEntity<MovieListItemDTO> updateMovieListItemById(
+            @RequestBody MovieListItemDTO movieListItemDTO,
+            @PathVariable("id") int id
+    ) {
+
+        return new ResponseEntity<>(movieListItemService.updateMovieListItemById(id, movieListItemDTO), HttpStatus.OK);
+    }
 }
