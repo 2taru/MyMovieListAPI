@@ -107,4 +107,10 @@ public class MovieListItemServiceImpl implements MovieListItemService {
 
         return MovieListItemMapper.mapToDto(updatedMovieListItem);
     }
+
+    @Override
+    public void deleteMovieListItemById(int movieListItemId) {
+
+        movieListItemRepository.deleteById(movieListItemId);
+    }
 }

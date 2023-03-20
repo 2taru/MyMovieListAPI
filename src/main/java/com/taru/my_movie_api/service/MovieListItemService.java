@@ -12,4 +12,6 @@ public interface MovieListItemService {
     MovieListItemDTO getMovieListItemById(int movieListItemId);
 
     MovieListItemDTO updateMovieListItemById(int movieListItemId, MovieListItemDTO movieListItemDTO);
+
+    void deleteMovieListItemById(int movieListItemId);
 }

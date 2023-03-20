@@ -59,4 +59,14 @@ public class MovieListItemController {
 
         return new ResponseEntity<>(movieListItemService.updateMovieListItemById(id, movieListItemDTO), HttpStatus.OK);
     }
+
+    @DeleteMapping("/movieListItem/{id}")
+    public ResponseEntity<String> deleteMovieListItemById(
+            @PathVariable("id") int id
+    ) {
+
+        movieListItemService.deleteMovieListItemById(id);
+
+        return new ResponseEntity<>("Deleted MovieListItem with id = " + id, HttpStatus.OK);
+    }
 }
