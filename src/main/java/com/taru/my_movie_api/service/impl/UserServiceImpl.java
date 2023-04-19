@@ -7,17 +7,20 @@ import com.taru.my_movie_api.models.User;
 import com.taru.my_movie_api.repository.UserRepository;
 import com.taru.my_movie_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO userDTO) {
 
         User user = UserMapper.mapToEntity(userDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 
         return UserMapper.mapToDto(user);
