@@ -7,7 +7,7 @@ public interface MovieListItemService {
 
     MovieListItemDTO createMovieListItem(MovieListItemDTO movieListItemDTO, int userId, int movieId);
 
-    MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize);
+    MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize, String sortBy, String sortType);
 
     MovieListItemDTO getMovieListItemById(int movieListItemId);
 

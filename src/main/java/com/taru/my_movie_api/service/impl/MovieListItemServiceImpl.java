@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,9 +65,9 @@ public class MovieListItemServiceImpl implements MovieListItemService {
     }
 
     @Override
-    public MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize) {
+    public MovieListItemResponse getAllMovieListItemsByUserId(int userId, int pageNo, int pageSize, String sortBy, String sortType) {
 
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortType.equals("DESC") ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy));
         Page<MovieListItem> movieListItems = movieListItemRepository.findAllByUserId(userId, pageable);
         List<MovieListItem> movieListItemList = movieListItems.getContent();
         List<MovieListItemDTO> content = movieListItemList.stream().map(MovieListItemMapper::mapToDto).collect(Collectors.toList());

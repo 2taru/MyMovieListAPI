@@ -36,11 +36,13 @@ public class MovieListItemController {
     public ResponseEntity<MovieListItemResponse> getMovieListItems(
             @RequestParam(value = "userId") int userId,
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "id", required = false) String sortBy,
+            @RequestParam(value = "sortType", defaultValue = "DESC", required = false) String sortType
     ) {
 
         MovieListItemResponse movieListItemResponse =
-                movieListItemService.getAllMovieListItemsByUserId(userId, pageNo, pageSize);
+                movieListItemService.getAllMovieListItemsByUserId(userId, pageNo, pageSize, sortBy, sortType);
 
         return new ResponseEntity<>(movieListItemResponse, HttpStatus.OK);
     }
