@@ -19,7 +19,7 @@ public class MovieRepositoryTests {
     private MovieRepository movieRepository;
 
     @Test
-    public void MovieRepository_SaveAll_ReturnedSavedMovie() {
+    public void MovieRepository_SaveAll_ReturnSavedMovie() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
@@ -29,17 +29,17 @@ public class MovieRepositoryTests {
 
         //Assert
         Assertions.assertNotNull(savedMovie);
-        Assertions.assertSame(savedMovie, movie);
+        Assertions.assertSame(movie, savedMovie);
     }
 
     @Test
     public void MovieRepository_FindAll_ReturnMoreThanOneMovie() {
 
         // Arrange
-        Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
+        Movie movie1 = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
         Movie movie2 = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
 
-        movieRepository.save(movie);
+        movieRepository.save(movie1);
         movieRepository.save(movie2);
 
         // Act
@@ -48,6 +48,8 @@ public class MovieRepositoryTests {
         //Assert
         Assertions.assertNotNull(movieList);
         Assertions.assertEquals(2, movieList.size());
+        Assertions.assertTrue(movieList.contains(movie1));
+        Assertions.assertTrue(movieList.contains(movie2));
     }
 
     @Test
@@ -62,7 +64,7 @@ public class MovieRepositoryTests {
 
         //Assert
         Assertions.assertTrue(returnedMovie.isPresent());
-        Assertions.assertSame(returnedMovie.get(), movie);
+        Assertions.assertSame(movie, returnedMovie.get());
     }
 
     @Test
@@ -74,15 +76,16 @@ public class MovieRepositoryTests {
 
         // Act
         movie.setSeriesTitle("Updated");
-        Movie returnedMovie = movieRepository.save(movie);
+        movieRepository.save(movie);
+        Optional<Movie> returnedMovie = movieRepository.findById(movie.getId());
 
         //Assert
-        Assertions.assertNotNull(returnedMovie);
-        Assertions.assertSame(returnedMovie, movie);
+        Assertions.assertTrue(returnedMovie.isPresent());
+        Assertions.assertSame(movie, returnedMovie.get());
     }
 
     @Test
-    public void MovieRepository_DeleteById_DeleteMovieMyId() {
+    public void MovieRepository_DeleteById_DeleteMovieById() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
