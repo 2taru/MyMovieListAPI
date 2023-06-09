@@ -20,7 +20,7 @@ public class UserRepositoryTests {
     private UserRepository userRepository;
 
     @Test
-    public void UserRepository_SaveAll_ReturnedSavedUser() {
+    public void UserRepository_SaveAll_ReturnsUser() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -34,7 +34,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_FindAll_ReturnMoreThanOneUser() {
+    public void UserRepository_FindAll_ReturnsMoreThanOneUser() {
 
         // Arrange
         User user1 = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -54,7 +54,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_FindById_ReturnCorrectUser() {
+    public void UserRepository_FindById_ReturnsUser() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -69,7 +69,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_UpdateById_ReturnUpdatedUser() {
+    public void UserRepository_UpdateById_ReturnsUser() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -86,7 +86,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_DeleteById_DeleteUserById() {
+    public void UserRepository_DeleteById() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -101,7 +101,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_ExistsByUsername_ReturnedIfExist() {
+    public void UserRepository_ExistsByUsername_ReturnsTrueIfExist() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();
@@ -115,7 +115,7 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void UserRepository_FindByUsername_ReturnedCorrectUser() {
+    public void UserRepository_FindByUsername_ReturnsUser() {
 
         // Arrange
         User user = User.builder().username("test").email("test@mail.com").password("test").build();

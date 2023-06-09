@@ -19,7 +19,7 @@ public class MovieRepositoryTests {
     private MovieRepository movieRepository;
 
     @Test
-    public void MovieRepository_SaveAll_ReturnSavedMovie() {
+    public void MovieRepository_SaveAll_ReturnsMovie() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
@@ -33,7 +33,7 @@ public class MovieRepositoryTests {
     }
 
     @Test
-    public void MovieRepository_FindAll_ReturnMoreThanOneMovie() {
+    public void MovieRepository_FindAll_ReturnsMoreThanOneMovie() {
 
         // Arrange
         Movie movie1 = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
@@ -53,7 +53,7 @@ public class MovieRepositoryTests {
     }
 
     @Test
-    public void MovieRepository_FindById_ReturnCorrectMovie() {
+    public void MovieRepository_FindById_ReturnsMovie() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
@@ -68,7 +68,7 @@ public class MovieRepositoryTests {
     }
 
     @Test
-    public void MovieRepository_UpdateById_ReturnUpdatedMovie() {
+    public void MovieRepository_UpdateById_ReturnsMovie() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();
@@ -85,7 +85,7 @@ public class MovieRepositoryTests {
     }
 
     @Test
-    public void MovieRepository_DeleteById_DeleteMovieById() {
+    public void MovieRepository_DeleteById() {
 
         // Arrange
         Movie movie = Movie.builder().seriesTitle("Test").imdbRating(9.9).build();

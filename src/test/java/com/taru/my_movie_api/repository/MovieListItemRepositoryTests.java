@@ -27,7 +27,7 @@ public class MovieListItemRepositoryTests {
     private UserRepository userRepository;
 
     @Test
-    public void MovieListItemRepository_SaveAll_ReturnedSavedMovieListItem() {
+    public void MovieListItemRepository_SaveAll_ReturnsMovieListItem() {
 
         // Arrange
         MovieListItem movieListItem = MovieListItem.builder()
@@ -46,7 +46,7 @@ public class MovieListItemRepositoryTests {
     }
 
     @Test
-    public void MovieListItemRepository_FindAll_ReturnMoreThanOneMovieListItem() {
+    public void MovieListItemRepository_FindAll_ReturnsMoreThanOneMovieListItem() {
 
         // Arrange
         Movie movie1 = Movie.builder().seriesTitle("Test1").imdbRating(9.9).build();
@@ -75,7 +75,7 @@ public class MovieListItemRepositoryTests {
     }
 
     @Test
-    public void MovieListItemRepository_FindById_ReturnCorrectMovieListItem() {
+    public void MovieListItemRepository_FindById_ReturnsMovieListItem() {
 
         // Arrange
         MovieListItem movieListItem = MovieListItem.builder()
@@ -95,7 +95,7 @@ public class MovieListItemRepositoryTests {
     }
 
     @Test
-    public void MovieListItemRepository_UpdateById_ReturnUpdatedMovieListItem() {
+    public void MovieListItemRepository_UpdateById_ReturnsMovieListItem() {
 
         // Arrange
         MovieListItem movieListItem = MovieListItem.builder()
@@ -117,7 +117,7 @@ public class MovieListItemRepositoryTests {
     }
 
     @Test
-    public void MovieListItemRepository_DeleteById_DeleteMovieListItemById() {
+    public void MovieListItemRepository_DeleteById() {
 
         // Arrange
         MovieListItem movieListItem = MovieListItem.builder()
@@ -137,7 +137,7 @@ public class MovieListItemRepositoryTests {
     }
 
     @Test
-    public void MovieListItemRepository_FindAllByUserId_ReturnMoreThanOneMovieListItem() {
+    public void MovieListItemRepository_FindAllByUserId_ReturnsMoreThanOneMovieListItem() {
 
         // Arrange
         Movie movie1 = Movie.builder().seriesTitle("Test1").imdbRating(9.9).build();
