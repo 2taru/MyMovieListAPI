@@ -31,14 +31,6 @@ public class UserController {
         return new ResponseEntity<>("User registered!", HttpStatus.CREATED);
     }
 
-    @PutMapping("/user/{id}/update")
-    public ResponseEntity<UserDTO> updateUserById(@RequestBody UserDTO userDTO, @PathVariable("id") int userId) {
-
-        UserDTO response = userService.updateUserById(userId, userDTO);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
     @GetMapping("/user/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") int userId) {
 
@@ -47,7 +39,15 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping("/user/{id}")
+    @PutMapping("/user/{id}/update")
+    public ResponseEntity<UserDTO> updateUserById(@RequestBody UserDTO userDTO, @PathVariable("id") int userId) {
+
+        UserDTO response = userService.updateUserById(userId, userDTO);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{id}/delete")
     public ResponseEntity<String> deleteUserById(@PathVariable("id") int userId) {
 
         userService.deleteUserById(userId);
