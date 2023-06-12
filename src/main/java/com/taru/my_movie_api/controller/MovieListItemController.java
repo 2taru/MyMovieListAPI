@@ -33,7 +33,7 @@ public class MovieListItemController {
     }
 
     @GetMapping("/movieListItem")
-    public ResponseEntity<MovieListItemResponse> getMovieListItems(
+    public ResponseEntity<MovieListItemResponse> getMovieListItemsByUserId(
             @RequestParam(value = "userId") int userId,
             @RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
             @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
@@ -53,7 +53,7 @@ public class MovieListItemController {
         return new ResponseEntity<>(movieListItemService.getMovieListItemById(id), HttpStatus.OK);
     }
 
-    @PutMapping("/movieListItem/{id}")
+    @PutMapping("/movieListItem/{id}/update")
     public ResponseEntity<MovieListItemDTO> updateMovieListItemById(
             @RequestBody MovieListItemDTO movieListItemDTO,
             @PathVariable("id") int id
@@ -62,10 +62,8 @@ public class MovieListItemController {
         return new ResponseEntity<>(movieListItemService.updateMovieListItemById(id, movieListItemDTO), HttpStatus.OK);
     }
 
-    @DeleteMapping("/movieListItem/{id}")
-    public ResponseEntity<String> deleteMovieListItemById(
-            @PathVariable("id") int id
-    ) {
+    @DeleteMapping("/movieListItem/{id}/delete")
+    public ResponseEntity<String> deleteMovieListItemById(@PathVariable("id") int id) {
 
         movieListItemService.deleteMovieListItemById(id);
 
